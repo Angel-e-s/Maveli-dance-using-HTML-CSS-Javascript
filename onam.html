@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Onam</title>
+  <style>
+    body {
+      margin: 0;
+      background: #f7f7f7;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-image: url('https://static.vecteezy.com/system/resources/previews/016/939/554/original/illustration-of-flower-garland-decoration-toran-with-beautiful-bokeh-background-can-be-used-for-south-india-festival-happy-diwali-pongal-onam-and-etc-holiday-background-vector.jpg');
+    }
+    .center-container {
+      position: relative;
+      width: 500px;
+      height: 500px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .overlay-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 500px;
+      height: 500px;
+    }
+    .maveli-container {
+      position: absolute;
+      left: -350px; 
+      top: 29px;
+      width: 500px;
+      height: 500px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .maveli-img {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      top: 0;
+      left: 0;
+    }
+    button {
+      margin: 0 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border:#f7f7f7;
+      background-color: darkgreen;
+      color: white;
+      border-radius: 5px;
+      box-shadow: 0 4px #999;
+    }
+    #playMusicBtn {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="center-container">
+     <img id="img" class="overlay-img" src="https://png.pngtree.com/png-clipart/20230916/original/pngtree-happy-onam-typography-creative-greeting-text-vector-png-image_12258258.png" alt="onam">
+    <div class="maveli-container">
+      <img id="img1" class="maveli-img" src="https://png.pngtree.com/png-clipart/20230914/original/pngtree-maveli-king-illustration-mahabali-png-image_11999937.png" alt="Maveli 1">
+      <img id="img2" class="maveli-img" src="C:\Users\91830\Downloads\pngtree-maveli-king-illustration-mahabali-png-image_11999937.png" alt="Maveli 2">
+       
+    </div>
+  </div>
+  <div>
+    <button id="startBtn">Dance</button>
+    <button id="stopBtn">Stop</button>
+  </div>
+  <audio id="onamAudio" src="C:\Users\91830\Downloads\onam.mp3"></audio>
+  <script>
+    const img1 = document.getElementById("img1");
+    const img2 = document.getElementById("img2");
+    const audio = document.getElementById("onamAudio");
+    let visible = true;
+    let intervalId = null;
+
+    function toggleImages() {
+      visible = !visible;
+      img1.style.display = visible ? "block" : "none";
+      img2.style.display = visible ? "none" : "block";
+    }
+
+    document.getElementById("startBtn").onclick = function() {
+      if (!intervalId) {
+        intervalId = setInterval(toggleImages, 300);
+        audio.currentTime = 0;
+        audio.play();
+      }
+    };
+
+    document.getElementById("stopBtn").onclick = function() {
+      clearInterval(intervalId);
+      intervalId = null;
+      audio.pause();
+      audio.currentTime = 0;
+    };
+
+    img1.style.display = "block";
+    img2.style.display = "none";
+  </script> 
+</body>
+</html>
